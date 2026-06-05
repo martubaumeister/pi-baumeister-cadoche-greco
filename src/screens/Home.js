@@ -39,8 +39,7 @@ export default function Home({ navigation }) {
                     <Post
                         id={item.id}
                         data={item.data}
-                       
-                    
+                                           
                     />
 
                 )}
