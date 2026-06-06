@@ -6,17 +6,17 @@ import { StyleSheet } from "react-native";
 
 
 function NewPost() {
-  const [descripcion, setDescripcion] = useState("");
+  const [description, setDescription] = useState("");
   function onSubmit() {
     db.collection("posts").add({
       email: auth.currentUser.email,
-      description: descripcion,
+      description: description,
       likes: [],
       createdAt: Date.now(),
     })
       .then(() => {
         console.log("Se creo el post correctamente.");
-        setDescripcion("")
+        setDescription("")
       }
 )
 .catch(error => console.log(error))
@@ -25,7 +25,7 @@ function NewPost() {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>New post</Text>
-      <TextInput placeholder="Contá tu experiencia viajera..." value={descripcion} onChangeText={text=>setDescripcion(text)} style={styles.input}></TextInput>
+      <TextInput placeholder="Contá tu experiencia viajera..." value={description} onChangeText={text=>setDescription(text)} style={styles.input}></TextInput>
       <Pressable style={styles.boton} onPress={onSubmit}>
         <Text style={styles.textoBoton}>Publicar</Text>
       </Pressable>

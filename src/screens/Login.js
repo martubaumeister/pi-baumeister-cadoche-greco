@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, Pressable, StyleSheet, View, Text } from "react-native-web";
+import { TextInput, Pressable, StyleSheet, View, Text } from "react-native";
 import { auth } from "../firebase/config";
 
 

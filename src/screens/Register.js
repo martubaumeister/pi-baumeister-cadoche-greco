@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, Pressable, StyleSheet, View, Text } from "react-native-web";
+import { TextInput, Pressable, StyleSheet, View, Text } from "react-native";
 import { db, auth } from "../firebase/config";
 
 
@@ -61,7 +61,7 @@ function Register(props) {
         <Text> Registrate </Text>
       </Pressable>
 
-      {registerError == "" ? "" : <Text style={styles.error} >{registerError}</Text>}
+      {registerError == "" ? null : <Text style={styles.error} >{registerError}</Text>}
 
       <Pressable style={styles.button} onPress={() => redireccionar()}>
         <Text> Ya tenes cuenta? Inicia sesión </Text>
