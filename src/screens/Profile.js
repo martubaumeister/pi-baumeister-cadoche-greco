@@ -13,6 +13,7 @@ function Profile(props) {
   }
 
   const [misPosteos, setMisPosteos] = useState([]);
+  const[username, setUsername] = useState("");
 
   useEffect(() => {
     db.collection('posts')
@@ -27,11 +28,20 @@ function Profile(props) {
           })
           setMisPosteos(posts);
         })
+    db.collection('users')
+      .where("email", "==", auth.currentUser.email).onSnapshot(
+        docs => {
+          docs.forEach(doc => {
+            setUsername(doc.data().username);
+          })
+        })
+        
   })
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Mi perfil</Text>
+      <Text style={styles.text}>Username: {username}</Text>
       <Text style={styles.text}>Email: {auth.currentUser.email}</Text>
       <View>
         <Text style={styles.publicaciones}>Mis publicaciones.</Text>
