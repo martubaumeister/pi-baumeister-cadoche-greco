@@ -40,7 +40,6 @@ function Profile(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Mi perfil</Text>
       <Text style={styles.text}>Username: {username}</Text>
       <Text style={styles.text}>Email: {auth.currentUser.email}</Text>
       <View>

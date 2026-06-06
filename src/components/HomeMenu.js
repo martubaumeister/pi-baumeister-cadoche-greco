@@ -14,7 +14,7 @@ function HomeMenu() {
                 options={
                     { tabBarIcon: () => <FontAwesome name="home" size={24} color="black" /> }
                 } />
-            <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name="Mi Perfil" component={Profile}
                 options={
                     { tabBarIcon: () => <FontAwesome name="user" size={24} color="black" /> }
                 } />
