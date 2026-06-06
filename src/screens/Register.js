@@ -9,13 +9,13 @@ function Register(props) {
   const [password, setPassword] = useState('');
   const [registerError, setRegisterError] = useState('');
 
-  useEffect(()=> {
-    auth.onAuthStateChanged( user => {
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
       console.log(user)
       if (user != null) {
         props.navigation.navigate('HomeMenu');
       }
-    })   
+    })
   }, [])
 
   function onSubmit() {
@@ -34,7 +34,7 @@ function Register(props) {
       })
   }
 
-  function redireccionar(){
+  function redireccionar() {
     props.navigation.navigate('Login');
   }
 
@@ -61,7 +61,7 @@ function Register(props) {
         <Text> Registrate </Text>
       </Pressable>
 
-      {registerError == "" ? "" : <Text style={styles.error} >{registerError}</Text>} 
+      {registerError == "" ? "" : <Text style={styles.error} >{registerError}</Text>}
 
       <Pressable style={styles.button} onPress={() => redireccionar()}>
         <Text> Ya tenes cuenta? Inicia sesión </Text>
@@ -75,7 +75,7 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff", 
+    backgroundColor: "#ffffff",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 30
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 12,
     fontSize: 12,
-    backgroundColor:"rgb(165, 165, 165)",
+    backgroundColor: "rgb(165, 165, 165)",
   },
   button: {
     backgroundColor: "rgb(75, 75, 234)",
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 12,
     borderWidth: 1,
-  }, 
+  },
   error: {
     color: "#ff0000",
     textAlign: "center",
