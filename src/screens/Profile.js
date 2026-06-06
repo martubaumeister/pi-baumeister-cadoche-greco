@@ -34,11 +34,15 @@ function Profile(props) {
       <Text style={styles.text}>Mi perfil</Text>
       <Text style={styles.text}>Email: {auth.currentUser.email}</Text>
       <View>
-        <Text style={styles.text}>Mis publicaciones.</Text>
+        <Text style={styles.publicaciones}>Mis publicaciones.</Text>
         <FlatList
-          data={posts}
+          data={misPosteos}
           keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => <Text>{item.data.description}</Text>} />
+          renderItem={({ item }) =>
+            <View style={styles.post}>
+              <Text style={styles.textoPost}>{item.data.description}</Text>
+              <Text style={styles.fecha}>{item.data.createdAt}</Text>
+            </View>} />
       </View>
       <Pressable style={styles.boton} onPress={Logout}>
         <Text style={styles.textoBoton}>Cerrar sesión.</Text>
@@ -49,7 +53,8 @@ function Profile(props) {
 
 const styles = StyleSheet.create({
   container: {
-
+    backgroundColor: 'white',
+    padding:12, 
   },
   boton: {
     backgroundColor: "rgb(75, 75, 234)",
@@ -67,6 +72,27 @@ const styles = StyleSheet.create({
   textoBoton: {
     color: 'white',
     fontSize: 16,
+  },
+  post: {
+    padding: 12, 
+    borderColor: "black", 
+    borderWidth: 1, 
+    marginTop: 10, 
+    marginBottom: 10, 
+    borderRadius: 10,
+  },
+  textoPost: {
+    fontSize: 15, 
+    marginBottom: 8,
+  },
+  fecha: {
+    fontWeight: 'bold',
+  },
+  publicaciones: {
+    fontSize: 19,
+    fontWeight: "bold",
+    marginTop: 10, 
+    marginBottom: 10, 
   }
 })
 export default Profile;
