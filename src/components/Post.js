@@ -70,7 +70,7 @@ export default function Post(props) {
             <Pressable
                 onPress={() =>
                     props.navigation.navigate(
-                        'Comments',
+                        'Comentarios',
                         { id: props.id }
                     )
                 }>
