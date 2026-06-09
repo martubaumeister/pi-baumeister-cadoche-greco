@@ -10,7 +10,7 @@ export default function Comentarios({ }) {
         let [comentario, setComentario] = useState('');
         let [comentarios, setComentarios] = useState([]);
 
-        let postId = ;
+        
 
         function agregarComentario() {
 
