@@ -42,13 +42,7 @@ export default function Post(props) {
                 {props.data.descripcionPost}
             </Text>
 
-            {/* {props.data.imagen ? (
-                <Image
-                    source={{ uri: props.data.imagen }}
-                    style={styles.image}
-                />
-            ) : null} */}
-
+         
             <Text style={styles.likes}>
                 Likes: {props.data.likes ? props.data.likes.length : 0}
             </Text>
