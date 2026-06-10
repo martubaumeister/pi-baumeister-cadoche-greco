@@ -9,17 +9,21 @@ function Comentarios(props) {
     let [comentarios, setComentarios] = useState([]);
 
 
+    console.log(props);
+    
+
     function agregarComentario() {
 
         db.collection('comments')
             .add({
-                postId: props.id,
+                postId: props.route.params.id,
                 comentario: comentario,
                 email: auth.currentUser.email,
                 createdAt: Date.now()
             })
             .then(() => {
                 setComentario('');
+                props.navigation.navigate("HomeMenu")
             })
             .catch(error => console.log(error));
     }
@@ -27,7 +31,7 @@ function Comentarios(props) {
     useEffect(() => {
 
         db.collection('comments')
-            .where('postId', '==', postId)
+            .where('postId', '==', props.route.params.id )
             .orderBy('createdAt', 'desc')
             .onSnapshot(docs => {
 
@@ -64,7 +68,7 @@ function Comentarios(props) {
 
             <Pressable
                 style={styles.button}
-                onPress={agregarComentario}
+                onPress={() => agregarComentario()}
             >
                 <Text>Comentar</Text>
             </Pressable>
