@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import Post from '../components/Post';
 
-export default function Home({ navigation }) {
+export default function Home(props) {
 
     let [posts, setPosts] = useState([]);
 
@@ -39,7 +39,7 @@ export default function Home({ navigation }) {
                     <Post
                         id={item.id}
                         data={item.data}
-                        navigation={navigation}
+                        navigation={props.navigation}
                                            
                     />
 
