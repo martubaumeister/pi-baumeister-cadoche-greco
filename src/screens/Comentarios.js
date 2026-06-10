@@ -27,7 +27,7 @@ function Comentarios(props) {
     useEffect(() => {
 
         db.collection('comments')
-            .where('postId', '==', postId)
+            .where('postId', '==', props.id)
             .orderBy('createdAt', 'desc')
             .onSnapshot(docs => {
 
