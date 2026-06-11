@@ -1,8 +1,35 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, FlatList, Text, StyleSheet, Pressable } from 'react-native';
 import { db, auth } from "../firebase/config";
+import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 
 export default function Post(props) {
+    let [comentarios, setComentarios] = useState([]);
+
+    useEffect(() => {
+
+        db.collection('comments')
+            .where('postId', '==', props.id)
+            .orderBy('createdAt', 'desc')
+            .onSnapshot(docs => {
+
+                let comentariosArray = [];
+
+                docs.forEach(doc => {
+                    comentariosArray.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                })
+
+                setComentarios(comentariosArray);
+
+            })
+
+    }, [])
+
+
+
 
     let liked =
         props.data.likes &&
@@ -42,7 +69,7 @@ export default function Post(props) {
                 {props.data.descripcionPost}
             </Text>
 
-         
+
             <Text style={styles.likes}>
                 Likes: {props.data.likes ? props.data.likes.length : 0}
             </Text>
@@ -72,6 +99,23 @@ export default function Post(props) {
                 <Text style={styles.commentButton}>
                     Comentar
                 </Text>
+                <FlatList
+                    data={comentarios}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+
+                        <View style={styles.commentBox}>
+
+                            <Text style={styles.commentEmail}>
+                                {item.data.email}
+                            </Text>
+
+                            <Text>
+                                {item.data.comentario}
+                            </Text>
+                        </View>
+
+                    )} />
             </Pressable>
 
         </View>
@@ -115,5 +159,24 @@ let styles = StyleSheet.create({
     commentButton: {
         color: 'purple',
         fontWeight: 'bold'
+    },
+    commentTitle: {
+        marginTop: 15,
+        fontWeight: 'bold',
+        marginBottom: 8
+    },
+
+    commentBox: {
+        backgroundColor: '#f2f2f2',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 8
+    },
+
+    commentEmail: {
+        fontWeight: 'bold',
+        marginBottom: 4
     }
+
+
 });
