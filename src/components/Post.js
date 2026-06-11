@@ -99,24 +99,29 @@ export default function Post(props) {
                 <Text style={styles.commentButton}>
                     Comentar
                 </Text>
-                <FlatList
-                    data={comentarios}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => (
-
-                        <View style={styles.commentBox}>
-
-                            <Text style={styles.commentEmail}>
-                                {item.data.email}
-                            </Text>
-
-                            <Text>
-                                {item.data.comentario}
-                            </Text>
-                        </View>
-
-                    )} />
             </Pressable>
+
+            <Text style={styles.commentTitle}>
+                Comentarios
+            </Text>
+
+            <FlatList
+                data={comentarios}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => (
+
+                    <View style={styles.commentBox}>
+
+                        <Text style={styles.commentEmail}>
+                            {item.data.email}
+                        </Text>
+
+                        <Text>
+                            {item.data.comentario}
+                        </Text>
+                    </View>
+
+                )} />
 
         </View>
     )
