@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, TextInput, FlatList} from 'react-native';
+import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from 'react-native';
 import { db, auth } from "../firebase/config";
 import firebase from 'firebase';
 import { useState, useEffect } from 'react';
@@ -9,8 +9,6 @@ function Comentarios(props) {
     let [comentarios, setComentarios] = useState([]);
 
 
-    console.log(props);
-    
 
     function agregarComentario() {
 
@@ -31,8 +29,8 @@ function Comentarios(props) {
     useEffect(() => {
 
         db.collection('comments')
-            .where('postId', '==', props.route.params.id )
-            .orderBy('createdAt', 'desc')
+            .where('postId', '==', props.route.params.id)
+            // .orderBy('createdAt', 'desc')
             .onSnapshot(docs => {
 
                 let comentariosArray = [];
@@ -72,6 +70,20 @@ function Comentarios(props) {
             >
                 <Text>Comentar</Text>
             </Pressable>
+
+
+
+            <Pressable
+                style={styles.buttonVolver}
+                onPress={() => props.navigation.navigate("HomeMenu")}
+            >
+                <Text>Volver</Text>
+            </Pressable>
+
+            <Text style={styles.title}>
+                Lista de comentarios
+            </Text>
+
 
             <FlatList
                 data={comentarios}
@@ -137,7 +149,22 @@ const styles = StyleSheet.create({
     email: {
         fontWeight: 'bold',
         marginBottom: 5
-    }
+    },
+
+    buttonVolver: {
+        backgroundColor: '#d3d3d3',
+        padding: 12,
+        borderRadius: 5,
+        alignItems: 'center',
+        marginBottom: 20,
+        width: 60
+
+    },
+
+    titleComentarios: {
+        marginBottom: 15,
+        marginTop: 10
+    },
 })
 
 export default Comentarios;
