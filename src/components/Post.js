@@ -6,7 +6,7 @@ import firebase from 'firebase';
 export default function Post(props) {
     let [comentarios, setComentarios] = useState([]);
 
-   
+
     let liked =
         props.data.likes &&
         props.data.likes.includes(auth.currentUser.email);
@@ -34,6 +34,7 @@ export default function Post(props) {
             .catch(error => console.log(error));
     }
 
+
     return (
         <View style={styles.container}>
 
@@ -42,7 +43,7 @@ export default function Post(props) {
             </Text>
 
             <Text style={styles.description}>
-                {props.data.descripcionPost}
+                {props.data.description || "Sin descripción"}
             </Text>
 
 
@@ -76,7 +77,7 @@ export default function Post(props) {
                     Comentararios
                 </Text>
             </Pressable>
-            
+
         </View>
     )
 }
@@ -119,5 +120,5 @@ let styles = StyleSheet.create({
         color: 'purple',
         fontWeight: 'bold'
     },
-   
+
 });
